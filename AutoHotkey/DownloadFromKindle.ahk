@@ -146,18 +146,21 @@ Loop {
 
     ; Looking if there are still downloads pending
     if NumReadyFiles() > 0 && EverythingDone {
-        asins := ""
+        Asins := ""
+        Num := 0
         Loop Files, AzwPath, "R" {
             if A_LoopFileSize > 0 {
-                asins := asins GetAsin(A_LoopFileName) ","
+                Num := Num + 1
+                Asins := Asins GetAsin(A_LoopFileName) ","
                 FileCopy A_LoopFilePath, ExportPath, 1
             } else {
                 MsgBox "Unexpected zero size file"
                 break
             }
         }
-        TrayTip "Returning " asins
-        ReturnKindleUnlimited asins
+        Asins := RTrim(Asins, ",")
+        TrayTip "Returning " Num " titles: " StrReplace(Asins, ",", ", ")
+        ReturnKindleUnlimited Asins
         Sync
     }
 
