@@ -11,4 +11,5 @@ const perform = () => {
   button.click();
 };
 
-setInterval(perform, 300);
+perform();
+setInterval(perform, 2000);

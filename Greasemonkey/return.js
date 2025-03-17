@@ -13,7 +13,10 @@ const perform = () => {
   const returnButtons = document.querySelectorAll("input[type='submit']");
   Array.from(returnButtons)
     .filter(
-      (el) => el.value === "利用を終了" && el.hasAttribute("aria-labelledby"),
+      (el) =>
+        el.value === "利用を終了" &&
+        el.hasAttribute("aria-labelledby") &&
+        el.offsetParent != null,
     )
     .forEach((el) => {
       const label = el.getAttribute("aria-labelledby");
@@ -25,7 +28,10 @@ const perform = () => {
 
   const returnButtonSpans = document.querySelectorAll("span");
   Array.from(returnButtonSpans)
-    .filter((el) => el.textContent === "利用を終了" && el.id)
+    .filter(
+      (el) =>
+        el.textContent === "利用を終了" && el.id && el.offsetParent != null,
+    )
     .forEach((el) => {
       if (ids.some((id) => el?.id.includes(id))) {
         console.log("Clicking returning label for", el.id);
@@ -35,5 +41,6 @@ const perform = () => {
 };
 
 if (ids.length > 0) {
-  setInterval(perform, 300);
+  perform();
+  setInterval(perform, 1000);
 }

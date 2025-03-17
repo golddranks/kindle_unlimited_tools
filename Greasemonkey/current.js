@@ -16,4 +16,5 @@ const perform = () => {
 
 // Perform this multiple times to refresh the "current" view,
 // so that when returning books, every remaining book will eventually show up
-setInterval(perform, 1000);
+perform();
+setInterval(perform, 2000);
