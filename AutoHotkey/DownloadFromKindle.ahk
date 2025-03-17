@@ -26,16 +26,14 @@ UpdateWindowMeasurements()
 {
     global
     WinActivate "ahk_exe Kindle.exe"
-    WinGetClientPos &X, &Y, &WinWidth, &WinHeight, "ahk_exe Kindle.exe"
-    Width := WinWidth - MainX
-    Height := WinHeight - MainY
+    WinGetClientPos &X, &Y, &Width, &Height, "ahk_exe Kindle.exe"
 }
 
 UpdateWindowMeasurements
 
 IsScrolledDown()
 {
-    return ImageSearch(&X, &Y, MainX, WinHeight - 50, Width, 50, ScrollbarPath)
+    return ImageSearch(&X, &Y, Width - 50, Height - 50, Width, Height, ScrollbarPath)
 }
 
 ScrollUp()
@@ -58,7 +56,7 @@ Sync()
     Click
     Loop 10 {
         sleep 500
-        Found := ImageSearch(&X, &Y, 0, 0, WinWidth, MainY, SyncPath)
+        Found := ImageSearch(&X, &Y, 0, 0, Width, MainY, SyncPath)
     }
 }
 
@@ -75,7 +73,7 @@ ReturnKindleUnlimited(asins)
 ; so we need to dismiss those
 DismissLimitWarning()
 {
-    Found := ImageSearch(&LimitX, &LimitY, MainX, MainY, Width, Height, LimitPath)
+    Found := ImageSearch(&LimitX, &LimitY, 0, 0, Width, Height, LimitPath)
     if (Found) {
         MouseMove LimitX + 30, LimitY + 310
         Click
