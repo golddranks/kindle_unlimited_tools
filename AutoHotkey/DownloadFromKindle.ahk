@@ -48,7 +48,7 @@ Sync()
 ReturnKindleUnlimited(ids)
 {
     Run "firefox.exe -new-window " AmznKuCentralUrl ids
-    sleep 15000
+    sleep 20000
     WinClose "Mozilla Firefox"
 }
 
@@ -102,7 +102,7 @@ Loop {
     }
 
     ; Looking if there are still downloads pending
-    if (NumFiles() >= 1) {
+    if (NumFiles() >= 10) {
         EverythingComplete := true
         ScrollUp
         Loop ScrollDownTries {
