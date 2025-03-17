@@ -22,6 +22,17 @@ Fluff := 30
 MainX := 230 + Fluff
 MainY := 145 + Fluff
 
+UpdateWindowMeasurements()
+{
+    global
+    WinActivate "ahk_exe Kindle.exe"
+    WinGetClientPos &X, &Y, &WinWidth, &WinHeight, "ahk_exe Kindle.exe"
+    Width := WinWidth - MainX
+    Height := WinHeight - MainY
+}
+
+UpdateWindowMeasurements
+
 IsScrolledDown()
 {
     return ImageSearch(&X, &Y, MainX, WinHeight - 50, Width, 50, ScrollbarPath)
@@ -91,13 +102,8 @@ GetAsin(fname)
 }
 
 Loop {
-    WinActivate "ahk_exe Kindle.exe"
-    WinGetClientPos &X, &Y, &WinWidth, &WinHeight, "ahk_exe Kindle.exe"
-    Width := WinWidth - MainX
-    Height := WinHeight - MainY
-
+    UpdateWindowMeasurements
     Sync
-
     EverythingComplete := true
 
     ; Looking for titles that are not yet downloaded or downloading
