@@ -1,6 +1,5 @@
 ﻿#Requires AutoHotKey v2.0
 
-Run "Kindle.exe"
 Esc::ExitApp
 PristinePath := "pristine.png"
 ScrollbarPath := "scrollbar.png"
