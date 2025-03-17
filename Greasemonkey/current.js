@@ -10,10 +10,10 @@ const perform = () => {
   const current = Array.from(select.options).find(
     (opt) => opt.text === "現在",
   ).value;
-  if (select.value != current) {
-    select.value = current;
-    select.dispatchEvent(new Event("change", { bubbles: true }));
-  }
+  select.value = current;
+  select.dispatchEvent(new Event("change", { bubbles: true }));
 };
 
-setInterval(perform, 300);
+// Perform this multiple times to refresh the "current" view,
+// so that when returning books, every remaining book will eventually show up
+setInterval(perform, 1000);
