@@ -20,8 +20,8 @@ ScrollDownTries := 20
 ScrollDelay := 500
 ClickDelay := 100
 Fluff := 30
-MainX := 230 + Fluff
-MainY := 145 + Fluff
+MainX := 230
+MainY := 145
 
 UpdateWindowMeasurements() {
     global Width
@@ -35,13 +35,13 @@ IsScrolledDown() {
 }
 
 ScrollUp() {
-    MouseMove MainX, MainY
+    MouseMove MainX + Fluff, MainY + Fluff
     Click "WheelUp 60"
     sleep ScrollDelay
 }
 
 ScrollBitDown() {
-    MouseMove MainX, MainY
+    MouseMove MainX + Fluff, MainY + Fluff
     Click "WheelDown 3"
     sleep ScrollDelay
 }
@@ -51,7 +51,7 @@ Sync() {
     Click
     Loop 40 {
         sleep 500
-        Found := ImageSearch(&X, &Y, 0, 0, Width, MainY, SyncPath)
+        Found := ImageSearch(&X, &Y, 0, 0, Width, Height, SyncPath)
         if Found {
             break
         }
@@ -121,17 +121,17 @@ Loop {
             EverythingDone := false
         }
 
-        ScannedY := MainY
+        PristineY := MainY
         ; Scan loop: scanning the current view / scroll position to find non-clicked titles
         Loop {
-            FoundPristine := ImageSearch(&PristineX, &PristineY, MainX, ScannedY, Width, Height, PristinePath)
+            FoundPristine := ImageSearch(&PristineX, &PristineY, MainX, PristineY, Width, Height, PristinePath)
             if !FoundPristine {
                 break
             }
 
             EverythingDone := false
-            ScannedY := PristineY + 1
-            MouseMove PristineX, PristineY + 40
+            PristineY := PristineY + Fluff ; Going a bit further down for scanning for the next title, and clicking
+            MouseMove PristineX, PristineY
             Click "Left 2"
             sleep ClickDelay
             DismissLimitWarning ; for warnings resulting directly from the click
