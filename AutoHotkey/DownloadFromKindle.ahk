@@ -98,11 +98,6 @@ GetAsin(fname) {
     return StrSplit(fname, "_")[1]
 }
 
-Max(a, b)
-{
-    return a < b ? b : a
-}
-
 
 ; Main loop
 Loop {
