@@ -26,7 +26,7 @@ const perform = () => {
       }
     });
 
-  const returnButtonSpans = document.querySelectorAll("span");
+  const returnButtonSpans = document.getElementsByTagName("span");
   Array.from(returnButtonSpans)
     .filter(
       (el) =>
