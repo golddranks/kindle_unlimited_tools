@@ -5,7 +5,7 @@ FileGetShortcut "ExportPathShortcut.lnk", &ExportPath
 FileGetShortcut "Kindle.lnk", &KindlePath
 
 Run KindlePath
-sleep 2000
+sleep 3000
 
 PristinePath := "pristine.png"
 ScrollbarPath := "scrollbar.png"
@@ -25,7 +25,7 @@ AmznKuCentralUrl := "https://www.amazon.co.jp/kindle-dbs/ku/ku-central/?current&
 ScrollDownTries := 20
 ScrollDelay := 500
 ClickDelay := 100
-SyncDelay := 20000
+SyncDelay := 120 * 1000
 Fluff := 30
 MainX := 230
 MainY := 145
@@ -34,6 +34,7 @@ UpdateWindowMeasurements() {
 
     global Width
     global Height
+    Run KindlePath
     WinActivate "ahk_exe Kindle.exe"
     WinGetClientPos &X, &Y, &Width, &Height, "ahk_exe Kindle.exe"
 }
