@@ -42,5 +42,5 @@ const perform = () => {
 
 if (ids.length > 0) {
   perform();
-  setInterval(perform, 1000);
+  setInterval(perform, 3000);
 }

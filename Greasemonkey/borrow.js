@@ -12,4 +12,4 @@ const perform = () => {
 };
 
 perform();
-setInterval(perform, 2000);
+setInterval(perform, 3000);
