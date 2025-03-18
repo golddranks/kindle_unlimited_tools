@@ -1,15 +1,21 @@
 ﻿#Requires AutoHotKey v2.0
 
 Esc::ExitApp
+FileGetShortcut "ExportPathShortcut.lnk", &ExportPath
+FileGetShortcut "Kindle.lnk", &KindlePath
+
+Run KindlePath
+sleep 2000
+
 PristinePath := "pristine.png"
 ScrollbarPath := "scrollbar.png"
 LimitPath := "limit.png"
 DownloadingPath := "downloading.png"
 PendingPath := "pending.png"
 SyncPath := "sync.png"
-ExportPath := A_MyDocuments "\Kindle Export"
 AzwPath := A_MyDocuments "\My Kindle Content\*.azw"
 AmznKuCentralUrl := "https://www.amazon.co.jp/kindle-dbs/ku/ku-central/?current&return&ids="
+
 
 ; How many times to try scrolling down before giving up
 ; Depending on the window size and amount of items,
@@ -19,11 +25,13 @@ AmznKuCentralUrl := "https://www.amazon.co.jp/kindle-dbs/ku/ku-central/?current&
 ScrollDownTries := 20
 ScrollDelay := 500
 ClickDelay := 100
+SyncDelay := 20000
 Fluff := 30
 MainX := 230
 MainY := 145
 
 UpdateWindowMeasurements() {
+
     global Width
     global Height
     WinActivate "ahk_exe Kindle.exe"
@@ -159,5 +167,5 @@ Loop {
         Sync
     }
 
-    sleep 5000
+    sleep SyncDelay
 }
