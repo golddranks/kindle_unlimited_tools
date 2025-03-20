@@ -9,7 +9,7 @@ const asins = `B07168N9Q7
 B0CBLV4N9M`; // For example
 
 const asinRegex = /B0[0-9A-Z]{8}/g;
-const comicsRegex = /コミック|Comics|comics|COMICS/gu;
+const comicsRegex = /コミック|Comics|comics|COMICS|漫画|マンガ/gu;
 
 const urlAsinMatches = document.URL.match(asinRegex);
 const urlComicMatches = document.URL.match(comicsRegex);
